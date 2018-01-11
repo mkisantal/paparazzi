@@ -14,9 +14,9 @@
 
     <!-- Configure default UART port and baudrate -->
     <configure name="SLAMDUNK_PORT" default="UDP1" case="upper|lower"/>
-    <configure name="SLAMDUNK_HOST" default="192.168.45.1"/>
-    <configure name="SLAMDUNK_PORT_OUT" default="4244"/>
-    <configure name="SLAMDUNK_PORT_IN" default="4245"/>
+    <configure name="SLAMDUNK_HOST" default="192.168.42.255"/>
+    <configure name="SLAMDUNK_PORT_OUT" default="4245"/>
+    <configure name="SLAMDUNK_PORT_IN" default="4244"/>
     <configure name="SLAMDUNK_BROADCAST" default="TRUE"/>
 
     <!-- Enable udp and set address-->

@@ -51,19 +51,17 @@ void slamdunk_init(void) {
 
 
 void slamdunk_periodic(void) {
-  printf("--- SALMDUNK periodic\n");
+//  printf("--- SALMDUNK periodic\n");
 
 
 
   struct PPRZ2SlamdunkPackage s2k_package;
-  s2k_package.test1 = 11;
+  s2k_package.heading = 66.6666;
 
   //printf("pprz_msg_send_PAYLOAD this line causes seg fault.\n");
 
-
-  unsigned char bla[6] ;
   pprz_msg_send_PAYLOAD(&(slamdunk.transport.trans_tx), slamdunk.device,
-    1, sizeof(struct PPRZ2SlamdunkPackage),  bla);
+    1, sizeof(struct PPRZ2SlamdunkPackage),  (unsigned char * ) &s2k_package);
 
   /*pprz_msg_send_PAYLOAD(&(slamdunk.transport.trans_tx), slamdunk.device,
     1, sizeof(struct PPRZ2SlamdunkPackage), (unsigned char *)(&s2k_package));
@@ -79,6 +77,7 @@ static inline void slamdunk_parse_msg(void) {
 
   switch (msg_id) {
     case PPRZ_MSG_ID_PAYLOAD:
+      printf("Message received!\n");
       break;
 
     default:

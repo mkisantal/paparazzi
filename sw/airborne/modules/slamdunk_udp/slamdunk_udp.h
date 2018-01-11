@@ -39,16 +39,14 @@ struct slamdunk_t {
 
 
 struct PPRZ2SlamdunkPackage {
-    int test1;
+  float heading;
+  float psi_dot;
 }__attribute__((__packed__));
 
-/*struct PPRZ2SlamdunkPackage {
-  int test1;
-}__attribute__((__packed__));
-*/
 
 struct Slamdunk2PPRZPackage {
-  int test2;
+  float target_phi_DOT;
+  uint8_t status;
 } __attribute__((__packed__));
 
 extern struct Slamdunk2PPRZPackage s2p_package;
