@@ -38,12 +38,9 @@ struct slamdunk_t {
 };
 
 
-union PPRZ2SlamdunkPackage {
-  struct {
+struct PPRZ2SlamdunkPackage {
     int test1;
-  }__attribute__((__packed__));
-  unsigned char buf[0];
-};
+}__attribute__((__packed__));
 
 /*struct PPRZ2SlamdunkPackage {
   int test1;

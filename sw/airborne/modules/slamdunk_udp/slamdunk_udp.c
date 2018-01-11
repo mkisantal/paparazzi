@@ -46,6 +46,7 @@ static uint8_t mp_msg_buf[128]  __attribute__((aligned));   ///< The message buf
 
 void slamdunk_init(void) {
   printf("--- SALMDUNK init\n");
+  pprz_transport_init(&slamdunk.transport);
 }
 
 
@@ -54,18 +55,17 @@ void slamdunk_periodic(void) {
 
 
 
-  union PPRZ2SlamdunkPackage s2k_package;
+  struct PPRZ2SlamdunkPackage s2k_package;
   s2k_package.test1 = 11;
 
+  //printf("pprz_msg_send_PAYLOAD this line causes seg fault.\n");
 
 
+  unsigned char bla[6] ;
+  pprz_msg_send_PAYLOAD(&(slamdunk.transport.trans_tx), slamdunk.device,
+    1, sizeof(struct PPRZ2SlamdunkPackage),  bla);
 
-  printf("pprz_msg_send_SLAMDUNK_PAYLOAD this line causes seg fault.\n");
-
-  pprz_msg_send_SLAMDUNK_PAYLOAD(&(slamdunk.transport.trans_tx), slamdunk.device,
-    1, sizeof(union PPRZ2SlamdunkPackage), (&s2k_package)->buf);
-
-  /*pprz_msg_send_SLAMDUNK_PAYLOAD(&(slamdunk.transport.trans_tx), slamdunk.device,
+  /*pprz_msg_send_PAYLOAD(&(slamdunk.transport.trans_tx), slamdunk.device,
     1, sizeof(struct PPRZ2SlamdunkPackage), (unsigned char *)(&s2k_package));
     //struct transport_tx *trans, struct link_device *dev, uint8_t ac_id, float *_test_field)
     */
