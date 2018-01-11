@@ -1,0 +1,34 @@
+<!DOCTYPE module SYSTEM "module.dtd">
+
+<module name="slamdunk_udp">
+  <doc>
+    <description>Communication to SLAMdunk over udp</description>
+  </doc>
+  <header>
+    <file name="slamdunk_udp.h"/>
+  </header>
+  <init fun="slamdunk_init()"/>
+  <periodic fun="slamdunk_periodic()" freq="100" start="slamdunk_periodic_start()" stop="slamdunk_periodic_stop()" autorun="TRUE"/>
+  <event fun="slamdunk_event()"/>
+  <makefile>
+
+    <!-- Configure default UART port and baudrate -->
+    <configure name="SLAMDUNK_PORT" default="UDP1" case="upper|lower"/>
+    <configure name="SLAMDUNK_HOST" default="192.168.45.1"/>
+    <configure name="SLAMDUNK_PORT_OUT" default="4244"/>
+    <configure name="SLAMDUNK_PORT_IN" default="4245"/>
+    <configure name="SLAMDUNK_BROADCAST" default="TRUE"/>
+
+    <!-- Enable udp and set address-->
+    <define name="USE_$(SLAMDUNK_PORT_UPPER)"/>
+    <define name="$(SLAMDUNK_PORT_UPPER)_HOST" value="$(SLAMDUNK_HOST)"/>
+    <define name="$(SLAMDUNK_PORT_UPPER)_PORT_OUT" value="$(SLAMDUNK_PORT_OUT)"/>
+    <define name="$(SLAMDUNK_PORT_UPPER)_PORT_IN" value="$(SLAMDUNK_PORT_IN)"/>
+    <define name="$(SLAMDUNK_PORT_UPPER)_BROADCAST" value="$(SLAMDUNK_BROADCAST)"/>
+    <define name="SLAMDUNK_PORT" value="$(SLAMDUNK_PORT_LOWER)"/>
+
+    <file name="slamdunk_udp.c"/>
+    <file name="pprz_transport.c" dir="pprzlink/src"/>
+  </makefile>
+</module>
+

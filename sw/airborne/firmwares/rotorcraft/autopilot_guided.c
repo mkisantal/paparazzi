@@ -151,3 +151,8 @@ void autopilot_guided_update(uint8_t flags, float x, float y, float z, float yaw
   }
 }
 
+
+bool autopilot_guided_update2(uint8_t flags, float x, float y, float z, float yaw){
+  autopilot_guided_update(flags, x, y, z, yaw);
+  return true;
+}

@@ -87,6 +87,8 @@ extern bool autopilot_guided_move_ned(float vx, float vy, float vz, float headin
  * @param yaw Heading or heading rate setpoint in radians or radians/sec.
  */
 extern void autopilot_guided_update(uint8_t flags, float x, float y, float z, float yaw);
+extern bool autopilot_guided_update2(uint8_t flags, float x, float y, float z, float yaw);
+
 
 /** Bitmask for setting the flags attribute in autopilot_guided_update function
  *  See function description for more details
